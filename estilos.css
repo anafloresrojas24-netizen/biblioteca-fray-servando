@@ -1,0 +1,2193 @@
+/* GENERAL */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    color: #333;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.78),
+            rgba(255,255,255,.78)
+        ),
+        url("https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=2000&q=80");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+/* ENCABEZADO FIJO */
+.encabezado {
+    width: 100%;
+    height: 105px;
+
+    background: rgba(255,255,255,.97);
+
+    padding: 20px 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    border-bottom: 4px solid #f28c28;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.15);
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1000;
+}
+
+
+/* ESPACIO PARA ENCABEZADO */
+main {
+    padding-top: 125px;
+}
+
+
+.logo-titulo h1 {
+    color: #e87511;
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.logo-titulo p {
+    color: #777;
+    font-size: 15px;
+}
+
+.acciones-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* BUSCADOR PRINCIPAL */
+.buscador {
+    display: flex;
+
+    background: white;
+
+    border: 2px solid #f28c28;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    width: 330px;
+}
+
+.buscador input {
+    border: none;
+
+    outline: none;
+
+    padding: 12px 16px;
+
+    width: 100%;
+
+    font-size: 15px;
+}
+
+.buscador button {
+    width: 48px;
+    height: 45px;
+
+    border: none;
+
+    background: #f28c28;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.buscador button:hover,
+.buscador-admin button:hover {
+    background: #d96f0b;
+}
+
+
+/* BOTÓN ADM */
+.btn-adm {
+    border: none;
+
+    background: #333;
+
+    color: white;
+
+    padding: 12px 18px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.btn-adm:hover {
+    background: #f28c28;
+}
+
+
+/* BIENVENIDA */
+.bienvenida {
+    max-width: 1100px;
+
+    margin: 35px auto 25px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,.9);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 5px 20px rgba(0,0,0,.12);
+}
+
+.bienvenida h2 {
+    color: #e87511;
+
+    font-size: 28px;
+
+    margin-bottom: 10px;
+}
+
+.bienvenida p {
+    color: #555;
+
+    margin-bottom: 18px;
+}
+
+
+/* BOTONES DE TEMAS */
+.botones-temas {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.botones-temas button {
+    border: 2px solid #f28c28;
+
+    background: white;
+
+    color: #e87511;
+
+    padding: 10px 18px;
+
+    border-radius: 25px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: .2s;
+}
+
+.botones-temas button:hover {
+    background: #f28c28;
+
+    color: white;
+
+    transform: translateY(-2px);
+}
+
+.botones-temas .btn-todos {
+    background: #f28c28;
+
+    color: white;
+}
+
+.botones-temas .btn-todos:hover {
+    background: #d96f0b;
+}
+
+
+/* CATÁLOGO */
+.catalogo {
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 20px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(230px,1fr));
+
+    gap: 25px;
+}
+
+
+/* LIBROS */
+.libro {
+    background: rgba(255,255,255,.78);
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    border-radius: 20px;
+
+    padding: 15px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,.13);
+
+    backdrop-filter: blur(6px);
+
+    overflow: hidden;
+}
+
+.libro:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 12px 28px rgba(0,0,0,.22);
+}
+
+.libro img {
+    width: 100%;
+
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+}
+
+.datos-libro {
+    padding: 15px 5px 5px;
+}
+
+.datos-libro h3 {
+    color: #e87511;
+
+    font-size: 20px;
+
+    margin-bottom: 12px;
+}
+
+.datos-libro p {
+    color: #555;
+
+    margin-bottom: 7px;
+
+    line-height: 1.4;
+}
+
+
+/* SERIE */
+.numero-serie {
+    font-size: 13px;
+
+    color: #777 !important;
+
+    margin-top: 10px;
+}
+
+
+/* CONTACTO */
+.contacto-disponibilidad {
+    background:
+        rgba(242,140,40,.13);
+
+    border-left:
+        4px solid #f28c28;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    color: #8a4d0b !important;
+
+    font-size: 13px;
+}
+
+.contacto-disponibilidad strong,
+.contacto-modal strong {
+    color: #e87511;
+}
+
+
+/* DESCRIPCIÓN OCULTA */
+.descripcion {
+    display: none;
+}
+
+
+/* RESULTADOS VACÍOS */
+.sin-resultados {
+    display: none;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 18px;
+
+    margin: 30px;
+}
+
+
+/* MODALES */
+.ventana-libro,
+.ventana-login,
+.ventana-admin {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+
+/* MODAL LIBRO */
+.ventana-libro {
+    z-index: 2000;
+
+    background:
+        rgba(0,0,0,.65);
+}
+
+.contenido-ventana {
+    position: relative;
+
+    width: 90%;
+
+    max-width: 850px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    display: flex;
+
+    gap: 30px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.3);
+}
+
+.contenido-ventana > img {
+    width: 280px;
+
+    height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+.info-modal {
+    flex: 1;
+
+    padding-top: 15px;
+}
+
+.info-modal h2 {
+    color: #e87511;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+}
+
+.info-modal p {
+    color: #555;
+
+    line-height: 1.6;
+
+    margin-bottom: 12px;
+}
+
+.contacto-modal {
+    background: #fff3e6;
+
+    border-left:
+        5px solid #f28c28;
+
+    padding: 12px;
+
+    border-radius: 8px;
+}
+
+
+/* BOTÓN CERRAR */
+.cerrar {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f28c28;
+
+    color: white;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    z-index: 10;
+}
+
+.cerrar:hover {
+    background: #d96f0b;
+}
+
+
+/* LOGIN */
+.ventana-login {
+    z-index: 3000;
+
+    background:
+        rgba(0,0,0,.65);
+}
+
+.contenido-login {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.3);
+}
+
+.icono-login {
+    font-size: 50px;
+
+    margin-bottom: 10px;
+}
+
+.contenido-login h2 {
+    color: #e87511;
+
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+.contenido-login > p {
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+.contenido-login form {
+    text-align: left;
+}
+
+.contenido-login label {
+    display: block;
+
+    color: #444;
+
+    font-weight: bold;
+
+    margin: 12px 0 6px;
+}
+
+.contenido-login input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+.contenido-login input:focus,
+.campo input:focus,
+.campo textarea:focus {
+    border-color: #f28c28;
+}
+
+.mensaje-login {
+    color: #d93025 !important;
+
+    font-size: 14px;
+
+    min-height: 20px;
+
+    margin: 10px 0 !important;
+}
+
+.btn-entrar {
+    width: 100%;
+
+    border: none;
+
+    background: #f28c28;
+
+    color: white;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* PANEL ADMIN */
+.ventana-admin {
+    z-index: 4000;
+
+    background:
+        rgba(0,0,0,.65);
+
+    align-items: flex-start;
+
+    overflow-y: auto;
+
+    padding: 30px 15px;
+}
+
+.contenido-admin {
+    width: 100%;
+
+    max-width: 1150px;
+
+    background: #f8f8f8;
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.35);
+
+    margin-top: 10px;
+}
+
+.admin-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom:
+        2px solid #eee;
+
+    padding-bottom: 20px;
+
+    margin-bottom: 25px;
+}
+
+.admin-header h2 {
+    color: #e87511;
+}
+
+.admin-header p {
+    color: #777;
+}
+
+.btn-cerrar-admin {
+    border: none;
+
+    background: #333;
+
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.btn-cerrar-admin:hover {
+    background: #e87511;
+}
+
+
+/* FORMULARIO ADMIN */
+.formulario-admin,
+.lista-admin {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.08);
+}
+
+.formulario-admin h3,
+.lista-admin > h3 {
+    color: #e87511;
+
+    font-size: 22px;
+
+    margin-bottom: 20px;
+}
+
+.campos-formulario {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap: 18px;
+}
+
+.campo {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.campo-completo {
+    grid-column: 1/-1;
+}
+
+.campo label {
+    font-weight: bold;
+
+    color: #444;
+
+    margin-bottom: 7px;
+}
+
+.campo input,
+.campo textarea {
+    width: 100%;
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    font-family: Arial;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.campo textarea {
+    resize: vertical;
+}
+
+.ayuda-serie {
+    color: #888;
+
+    margin-top: 5px;
+
+    font-size: 12px;
+}
+
+
+/* BOTONES FORMULARIO */
+.botones-formulario {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.btn-guardar,
+.btn-cancelar {
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.btn-guardar {
+    background: #f28c28;
+
+    color: white;
+}
+
+.btn-cancelar {
+    background: #ddd;
+
+    color: #333;
+}
+
+
+/* BUSCADOR ADMIN */
+.buscador-admin {
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    border:
+        2px solid #f28c28;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+.buscador-admin input {
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    padding: 13px 15px;
+
+    font-size: 15px;
+}
+
+.buscador-admin button {
+    width: 55px;
+
+    border: none;
+
+    background: #f28c28;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+
+/* RESULTADOS ADMIN */
+.item-admin {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 15px;
+
+    border:
+        1px solid #eee;
+
+    border-radius: 15px;
+
+    margin-bottom: 12px;
+
+    background: #fffaf5;
+}
+
+.item-admin img {
+    width: 75px;
+
+    height: 100px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.datos-admin {
+    flex: 1;
+}
+
+.datos-admin h4 {
+    color: #e87511;
+
+    font-size: 18px;
+
+    margin-bottom: 7px;
+}
+
+.datos-admin p {
+    color: #666;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+.acciones-admin {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.btn-editar,
+.btn-eliminar {
+    border: none;
+
+    padding: 9px 13px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.btn-editar {
+    background: #f5c16c;
+
+    color: #5d3900;
+}
+
+.btn-editar:hover {
+    background: #eaae4b;
+}
+
+.btn-eliminar {
+    background: #e57373;
+
+    color: white;
+}
+
+.btn-eliminar:hover {
+    background: #d95353;
+}
+
+
+/* FOOTER */
+footer {
+    text-align: center;
+
+    background:
+        rgba(255,255,255,.92);
+
+    margin-top: 40px;
+
+    padding: 20px;
+
+    color: #777;
+
+    border-top:
+        3px solid #f28c28;
+}
+
+
+/* RESPONSIVE */
+@media (max-width:800px) {
+
+    .encabezado {
+        height: auto;
+
+        min-height: 105px;
+
+        flex-direction: column;
+
+        padding: 20px;
+    }
+
+
+    main {
+        padding-top: 190px;
+    }
+
+
+    .acciones-header,
+    .buscador {
+        width: 100%;
+    }
+
+
+    .acciones-header {
+        flex-direction: column;
+    }
+
+
+    .btn-adm {
+        width: 100%;
+    }
+
+
+    .botones-temas {
+        flex-direction: column;
+    }
+
+
+    .botones-temas button {
+        width: 100%;
+    }
+
+
+    .contenido-ventana {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .contenido-ventana > img {
+        width: 220px;
+
+        height: 320px;
+    }
+
+
+    .campos-formulario {
+        grid-template-columns: 1fr;
+    }
+
+
+    .campo-completo {
+        grid-column: auto;
+    }
+
+
+    .admin-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .btn-cerrar-admin {
+        width: 100%;
+    }
+
+
+    .item-admin {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .item-admin img {
+        width: 100%;
+
+        height: 220px;
+    }
+
+
+    .btn-editar,
+    .btn-eliminar {
+        flex: 1;
+    }
+
+}
+
+
+@media (max-width:500px) {
+
+    .catalogo {
+        grid-template-columns: 1fr;
+
+        padding: 15px;
+    }
+
+
+    main {
+        padding-top: 200px;
+    }
+
+
+    .contenido-login,
+    .contenido-admin {
+        padding: 25px 15px;
+    }
+
+
+    .botones-formulario {
+        flex-direction: column;
+    }
+
+
+    .btn-guardar,
+    .btn-cancelar {
+        width: 100%;
+    }
+
+}
+
+/* BOTÓN SOLICITAR LIBRO */
+.btn-solicitud
+ {
+    border: none;
+    background: #f28c28;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+/* ====================================
+   BOTONES DE SOLICITUDES
+==================================== */
+
+.item-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    background: #fffaf5;
+    border: 1px solid #f0e6dc;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.datos-admin {
+    flex: 1;
+    min-width: 220px;
+}
+
+.datos-admin h4 {
+    color: #e87518;
+    font-size: 17px;
+    margin: 0 0 10px;
+}
+
+.datos-admin p {
+    margin: 5px 0;
+    color: #555;
+}
+
+/* CONTENEDOR DE BOTONES */
+
+.botones-solicitud {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* BOTÓN CONFIRMAR */
+
+.btn-confirmar {
+    background: #16834b;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-confirmar:hover {
+    background: #116638;
+    transform: translateY(-2px);
+}
+
+/* BOTÓN RECHAZAR */
+
+.btn-rechazar {
+    background: #c43d3d;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-rechazar:hover {
+    background: #a52c2c;
+    transform: translateY(-2px);
+}
+
+/* PANTALLAS PEQUEÑAS */
+
+@media (max-width: 600px) {
+    .botones-solicitud {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+
+/* ====================================
+   CENTRO DE ESTADÍSTICAS
+==================================== */
+
+.seccion-estadisticas {
+    display: none;
+    width: 95%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #f4f6fb;
+    border-radius: 20px;
+    box-sizing: border-box;
+    color: #263238;
+}
+
+.encabezado-estadisticas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.encabezado-estadisticas h2 {
+    color: #e87518;
+    font-size: 28px;
+    margin: 0;
+}
+
+.encabezado-estadisticas p {
+    color: #667085;
+}
+
+/* BOTÓN CERRAR ESTADÍSTICAS */
+
+.btn-cerrar-estadisticas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    background: #374151;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    padding: 11px 20px;
+
+    font-size: 14px;
+    font-weight: bold;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+}
+
+.btn-cerrar-estadisticas:hover {
+    background: #1f2937;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.btn-cerrar-estadisticas:active {
+    transform: scale(0.96);
+}
+
+.tarjeta-total {
+    background: linear-gradient(135deg, #f58220, #ffad42);
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.tarjeta-total h2 {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.tarjeta-grafica {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+.tarjeta-grafica h3 {
+    color: #e87518;
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.tarjeta-grafica p {
+    color: #667085;
+}
+
+.contenedor-grafica {
+    position: relative;
+    width: 100%;
+    height: 420px;
+}
+
+.contenedor-circular {
+    height: 450px;
+    max-width: 650px;
+    margin: auto;
+}
+
+/* ====================================
+   BOTÓN ISLA DE ESTADÍSTICAS
+==================================== */
+
+.btn-estadisticas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 20px auto;
+    padding: 16px 28px;
+
+    background: linear-gradient(135deg, #ff9b35, #f47716);
+    color: white;
+
+    border: none;
+    border-radius: 16px;
+
+    font-size: 16px;
+    font-weight: bold;
+    font-family: inherit;
+
+    cursor: pointer;
+
+    box-shadow: 0 6px 15px rgba(244, 119, 22, 0.25);
+
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el cursor */
+
+.btn-estadisticas:hover {
+    background: linear-gradient(135deg, #f47716, #df6108);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(244, 119, 22, 0.35);
+}
+
+/* Efecto al presionar */
+
+.btn-estadisticas:active {
+    transform: scale(0.97);
+}
+
+/* ====================================
+   ADAPTACIÓN PARA PANTALLAS PEQUEÑAS
+==================================== */
+
+@media (max-width: 600px) {
+
+    .seccion-estadisticas {
+        padding: 15px;
+    }
+
+    .contenedor-grafica {
+        height: 320px;
+    }
+
+    .contenedor-circular {
+        height: 350px;
+    }
+
+    .btn-estadisticas {
+        width: 90%;
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+
+}
+
+
+/* VENTANA DE SOLICITUDES */
+.ventana-solicitudes {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2500;
+    background: rgba(0,0,0,.65);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+/* CONTENIDO DEL FORMULARIO */
+.contenido-solicitudes {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 25px;
+    padding: 35px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.3);
+}
+
+
+/* TÍTULO */
+.contenido-solicitudes h2 {
+    color: #e87511;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.contenido-solicitudes > p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+
+/* ETIQUETAS */
+.contenido-solicitudes label {
+    display: block;
+    color: #444;
+    font-weight: bold;
+    margin: 15px 0 6px;
+}
+
+
+/* CAMPOS */
+.contenido-solicitudes input,
+.contenido-solicitudes textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    outline: none;
+}
+
+.contenido-solicitudes input:focus,
+.contenido-solicitudes textarea:focus {
+    border-color: #f28c28;
+}
+
+.contenido-solicitudes textarea {
+    resize: vertical;
+}
+
+
+/* BOTÓN ENVIAR */
+.btn-enviar-solicitud {
+    width: 100%;
+    border: none;
+    background: #f28c28;
+    color: white;
+    padding: 13px;
+    margin-top: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-enviar-solicitud:hover {
+    background: #d96f0b;
+}
+
+
+/* MENSAJE */
+#mensaje-solicitud {
+    color: #e87511;
+    margin-top: 12px;
+    font-size: 14px;
+}
+/* REDES SOCIALES FLOTANTES */
+.redes-flotantes {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+}
+
+/* BOTONES DE REDES */
+.red-social {
+    width: 62px;
+    height: 62px;
+    background: #d5a000;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 34px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* EFECTO AL PASAR EL CURSOR */
+.red-social:hover {
+    background: #b88900;
+    transform: scale(1.12);
+    color: white;
+}
+
+/* AJUSTE PARA CELULARES */
+@media (max-width: 600px) {
+    .redes-flotantes {
+        right: 12px;
+        bottom: 18px;
+        gap: 10px;
+    }
+
+    .red-social {
+        width: 52px;
+        height: 52px;
+        font-size: 28px;
+    }
+}
+/* MASCOTA LATERAL IZQUIERDA */
+/* MASCOTA LATERAL IZQUIERDA */
+.mascota-lateral {
+    position: fixed;
+    left: 8px;
+    bottom: 0;
+
+    width: clamp(130px, 17vw, 260px);
+    height: calc(100dvh - 105px);
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    z-index: 2;
+    pointer-events: none;
+}
+
+.mascota-lateral img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom center;
+}
+
+/* LAPTOPS Y PANTALLAS MEDIANAS */
+@media (max-width: 1200px) {
+    .mascota-lateral {
+        width: clamp(110px, 15vw, 190px);
+        height: calc(100dvh - 100px);
+    }
+}
+
+/* TABLETS */
+@media (max-width: 900px) {
+    .mascota-lateral {
+        width: 130px;
+        height: 45vh;
+        opacity: 0.9;
+    }
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+    .mascota-lateral {
+        display: none;
+    }
+}
+/* ==========================================
+   CORREGIR DISTRIBUCIÓN DE CATEGORÍAS
+========================================== */
+
+.seccion-categoria {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-width: 0;
+    margin: 25px 0;
+}
+
+.seccion-categoria h2 {
+    color: #e87511;
+    font-size: 26px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f28c28;
+}
+
+.libros-categoria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+/* Evitar que la mascota tape los libros */
+.catalogo {
+    position: relative;
+    z-index: 3;
+}
+
+.mascota-lateral {
+    z-index: 1;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 500px) {
+    .libros-categoria {
+        grid-template-columns: 1fr;
+    }
+}
+/* TARJETAS DE LIBROS DENTRO DE CADA CATEGORÍA */
+
+.libros-categoria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 25px;
+    width: 100%;
+    align-items: start;
+}
+
+.libros-categoria .libro {
+    width: 100%;
+    max-width: 100%;
+}
+
+.libros-categoria .libro img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+.btn-cerrar-ventana {
+    background: #eeeeee;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.btn-cerrar-ventana:hover {
+    background: #ff7b00;
+    color: white;
+}
+
+.acciones-encabezado-admin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cerrar-ventana {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #eeeeee;
+    color: #333;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.btn-cerrar-ventana:hover {
+    background: #ff7b00;
+    color: white;
+}
+
+/* =====================================
+   ENCABEZADO ADAPTABLE PARA TABLETAS
+   Y CELULARES
+===================================== */
+
+@media (max-width: 800px) {
+
+    .encabezado {
+        position: relative;
+        height: auto;
+        min-height: auto;
+        flex-direction: column;
+        padding: 18px 16px;
+        gap: 15px;
+    }
+
+    main {
+        padding-top: 20px;
+    }
+
+    .logo-titulo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo-titulo h1 {
+        font-size: clamp(20px, 4vw, 28px);
+        line-height: 1.3;
+    }
+
+    .logo-titulo p {
+        font-size: 14px;
+    }
+
+    .acciones-header {
+        width: 100%;
+        max-width: 550px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buscador,
+    .btn-solicitud,
+    .btn-adm {
+        width: 100%;
+    }
+}
+
+/* REDES SOCIALES EN CELULARES */
+
+@media (max-width: 600px) {
+
+    .redes-flotantes {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 20px auto;
+        padding: 0 10px;
+        gap: 10px;
+    }
+
+    .red-social {
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+    }
+
+}
+
+/* REDES SOCIALES FLOTANTES EN CELULARES */
+
+@media (max-width: 600px) {
+
+    .redes-flotantes {
+        position: fixed;
+        right: 8px;
+        bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        z-index: 9999;
+    }
+
+    .red-social {
+        width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+}
+
+/* BOTONES DEL ENCABEZADO EN CELULARES */
+
+@media (max-width: 800px) {
+
+    .acciones-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .acciones-header .buscador {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+
+    .acciones-header .btn-solicitud {
+        width: 33%;
+        flex: 0 0 33%;
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+
+    .acciones-header .btn-adm {
+        width: 85px;
+        flex: 0 0 85px;
+        padding: 10px;
+        font-size: 13px;
+    }
+
+}
+
+/* REDUCIR TÍTULO PRINCIPAL EN CELULARES */
+
+@media (max-width: 600px) {
+
+    .bienvenida {
+        margin: 15px auto;
+        padding: 15px 12px;
+    }
+
+    .bienvenida h2 {
+        font-size: 23px;
+        margin-bottom: 8px;
+    }
+
+    .bienvenida p {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+}
+
+/* BUSCADOR MÁS COMPACTO EN CELULARES */
+
+@media (max-width: 800px) {
+
+    .acciones-header .buscador {
+        width: 92%;
+        flex: 0 0 92%;
+        height: 42px;
+        margin: 0 auto;
+    }
+
+    .buscador input {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+
+    .buscador button {
+        width: 42px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+}
+
+/* =========================================
+   ENCABEZADO RESPONSIVE PARA CELULARES
+========================================= */
+
+/* Estos botones y el menú no aparecen en computadora */
+.btn-busqueda-movil,
+.btn-menu-movil,
+.menu-movil {
+    display: none;
+}
+
+/* Ajustes para celulares y tablets */
+@media (max-width: 800px) {
+
+    .encabezado {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        height: auto;
+        padding: 15px 12px;
+        z-index: 1000;
+    }
+
+    .logo-titulo {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo-titulo h1 {
+        font-size: 25px;
+        margin: 0;
+    }
+
+    .logo-titulo p {
+        font-size: 12px;
+        margin: 4px 0 0;
+    }
+
+    /* Distribución de los botones */
+    .acciones-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Ocultar el buscador hasta presionar la lupa */
+    .acciones-header .buscador {
+        display: none;
+    }
+
+    .acciones-header.buscador-abierto .buscador {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+        width: auto;
+        max-width: 220px;
+    }
+
+    .acciones-header.buscador-abierto .buscador input {
+        min-width: 0;
+        width: 100%;
+    }
+
+    /* Botón de lupa */
+    .btn-busqueda-movil {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border: none;
+        border-radius: 10px;
+        background: #f28c28;
+        color: white;
+        font-size: 19px;
+        cursor: pointer;
+    }
+
+    /* Botón solicitar libros */
+    .acciones-header .btn-solicitud {
+        width: auto;
+        min-height: 42px;
+        padding: 8px 14px;
+        font-size: 13px;
+        white-space: nowrap;
+        flex: 0 0 auto;
+    }
+
+    /* Ocultar ADM de computadora */
+    .acciones-header .btn-adm {
+        display: none;
+    }
+
+    /* Botón del menú */
+    .btn-menu-movil {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        border: none;
+        border-radius: 10px;
+        background: #333;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Menú desplegable */
+    .menu-movil {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        top: 100%;
+        right: 12px;
+        width: min(280px, calc(100vw - 24px));
+        max-height: 70vh;
+        overflow-y: auto;
+        padding: 15px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        z-index: 2000;
+    }
+
+    .menu-movil.abierto {
+        display: flex;
+    }
+
+    .menu-movil h3 {
+        margin: 0 0 8px;
+        color: #333;
+        font-size: 17px;
+    }
+
+    .menu-movil button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 7px;
+        background: #f4f4f4;
+        color: #333;
+        text-align: left;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .menu-movil button:hover {
+        background: #f28c28;
+        color: white;
+    }
+
+    .menu-movil hr {
+        width: 100%;
+        border: 0;
+        border-top: 1px solid #ddd;
+    }
+
+    /* Las materias se consultan desde el menú */
+    .botones-temas {
+        display: none !important;
+    }
+}
+
+/* =========================================
+   DOS LIBROS POR FILA EN CELULARES
+========================================= */
+
+@media (max-width: 500px) {
+
+    /* Catálogo principal */
+    .catalogo {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+        padding: 12px;
+    }
+
+    /* Tarjetas */
+    .libro {
+        min-width: 0;
+        width: 100%;
+        padding: 8px;
+        border-radius: 12px;
+    }
+
+    /* Portadas */
+    .libro img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    /* Información de los libros */
+    .datos-libro {
+        padding: 10px 2px 3px;
+        min-width: 0;
+    }
+
+    .datos-libro h3 {
+        font-size: 14px;
+        line-height: 1.3;
+        margin-bottom: 8px;
+    }
+
+    .datos-libro p {
+        font-size: 12px;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+    }
+
+    .numero-serie {
+        font-size: 11px;
+    }
+
+    .contacto-disponibilidad {
+        font-size: 11px;
+        padding: 7px;
+    }
+
+    /* También dos libros por fila en las categorías */
+    .libros-categoria {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .libros-categoria .libro img {
+        height: 200px;
+    }
+}
+
+/* =========================================
+   PANEL ADMINISTRATIVO MÁS ORDENADO
+========================================= */
+
+.contenido-admin {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+/* Encabezado y formulario ocupan todo el ancho */
+.contenido-admin > .admin-header,
+.contenido-admin > .formulario-admin {
+    grid-column: 1 / -1;
+}
+
+/* Buscar libros ocupa todo el ancho */
+.contenido-admin > .panel-busqueda {
+    grid-column: 1 / -1;
+}
+
+/* Solicitudes y estadísticas quedan lado a lado */
+.contenido-admin > .panel-solicitudes,
+.contenido-admin > .panel-estadisticas {
+    grid-column: span 1;
+    min-width: 0;
+}
+
+/* Estilo de las tarjetas principales */
+.contenido-admin > .panel-busqueda,
+.contenido-admin > .panel-solicitudes,
+.contenido-admin > .panel-estadisticas {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 24px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+}
+
+/* Títulos */
+.panel-busqueda h3,
+.panel-solicitudes h3,
+.panel-estadisticas h3 {
+    margin: 0 0 18px;
+    color: #f07818;
+    font-size: 21px;
+}
+
+/* Buscador */
+.panel-busqueda .buscador-admin {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Botones */
+.panel-solicitudes .btn-solicitud,
+.panel-estadisticas .btn-estadisticas {
+    margin-top: 4px;
+}
+
+/* Evitar que el contenido de solicitudes se amontone */
+#lista-solicitudes-admin {
+    width: 100%;
+    margin-top: 18px;
+}
+
+/* Estadísticas completas debajo de las tarjetas */
+.contenido-admin > .seccion-estadisticas {
+    grid-column: 1 / -1;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 8px;
+}
+
+/* Ajuste para celulares y tablets */
+@media (max-width: 700px) {
+
+    .contenido-admin {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+        padding: 12px;
+    }
+
+    .contenido-admin > .admin-header,
+    .contenido-admin > .formulario-admin,
+    .contenido-admin > .panel-busqueda,
+    .contenido-admin > .panel-solicitudes,
+    .contenido-admin > .panel-estadisticas,
+    .contenido-admin > .seccion-estadisticas {
+        grid-column: 1 / -1;
+    }
+
+    .contenido-admin > .panel-busqueda,
+    .contenido-admin > .panel-solicitudes,
+    .contenido-admin > .panel-estadisticas {
+        padding: 18px;
+    }
+
+    .panel-busqueda h3,
+    .panel-solicitudes h3,
+    .panel-estadisticas h3 {
+        font-size: 18px;
+    }
+}
