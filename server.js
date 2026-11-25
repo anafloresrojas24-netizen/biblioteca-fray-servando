@@ -230,7 +230,8 @@ app.get("/api/libros", async (req, res) => {
         OtrosResponsables,
         Anio,
         Ejemplares,
-        Descripcion
+        Descripcion,
+        ImagenPortada
     FROM libros
     ORDER BY ID ASC
 `);
@@ -245,12 +246,12 @@ app.get("/api/libros", async (req, res) => {
         });
     }
 });
-// ====================================
+
 // AGREGAR LIBRO
-// ====================================
+
 app.post("/api/libros", verificarOrigen, requiereAdmin, async (req, res) => {
     try {
-        const {
+       const {
     serie,
     titulo,
     autor,
@@ -258,7 +259,8 @@ app.post("/api/libros", verificarOrigen, requiereAdmin, async (req, res) => {
     materia,
     otrosResponsables,
     ejemplares,
-    descripcion
+    descripcion,
+    imagenPortada
 } = req.body;
 
 // Verificar que los datos sean texto
@@ -270,7 +272,8 @@ const campos = {
     materia,
     otrosResponsables,
     ejemplares,
-    descripcion
+    descripcion,
+    imagenPortada
 };
 
 for (const [nombre, valor] of Object.entries(campos)) {
@@ -306,7 +309,8 @@ const limites = {
     materia: 500,
     otrosResponsables: 500,
     ejemplares: 100,
-    descripcion: 5000
+    descripcion: 5000,
+    imagenPortada: 2000
 };
 
 for (const [nombre, limite] of Object.entries(limites)) {
@@ -328,23 +332,26 @@ for (const [nombre, limite] of Object.entries(limites)) {
 
             const nuevoID = Number(ultimo[0].ultimo_id || 0) + 1;
 
-            await conexion.query(
-                `INSERT INTO libros
-                (ID, Clasificacion, Titulo, Autores, Anio,
-                 Materias, OtrosResponsables, Ejemplares, Descripcion)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-              [
-                    nuevoID,
-                    datos.serie,
-                    datos.titulo,
-                    datos.autor,
-                    datos.anio || null,
-                    datos.materia || null,
-                    datos.otrosResponsables || null,
-                    datos.ejemplares || null,
-                    datos.descripcion || null
-                ]
-            );
+           await conexion.query(
+    `INSERT INTO libros
+    (ID, Clasificacion, Titulo, Autores, Anio,
+     Materias, OtrosResponsables, Ejemplares, Descripcion,
+     ImagenPortada)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+        nuevoID,
+        datos.serie,
+        datos.titulo,
+        datos.autor,
+        datos.anio || null,
+        datos.materia || null,
+        datos.otrosResponsables || null,
+        datos.ejemplares || null,
+        datos.descripcion || null,
+        datos.imagenPortada || null
+    ]
+);
+             
 
             await conexion.commit();
 
@@ -385,7 +392,8 @@ app.put("/api/libros/:id", verificarOrigen, requiereAdmin, async (req, res) => {
             titulo: req.body.titulo,
             autor: req.body.autor,
             materia: req.body.materia,
-            descripcion: req.body.descripcion
+            descripcion: req.body.descripcion,
+            imagenPortada: req.body.imagenPortada
         };
 
         // Validar que los campos sean texto
@@ -419,7 +427,8 @@ app.put("/api/libros/:id", verificarOrigen, requiereAdmin, async (req, res) => {
             titulo: 500,
             autor: 500,
             materia: 500,
-            descripcion: 5000
+            descripcion: 5000,
+         imagenPortada: 2000
         };
 
         for (const [nombre, limite] of Object.entries(limites)) {
@@ -430,23 +439,25 @@ app.put("/api/libros/:id", verificarOrigen, requiereAdmin, async (req, res) => {
             }
         }
 
-        const [resultado] = await pool.query(
-            `UPDATE libros
-             SET Clasificacion = ?,
-                 Titulo = ?,
-                 Autores = ?,
-                 Materias = ?,
-                 Descripcion = ?
-             WHERE ID = ?`,
-            [
-                datos.serie,
-                datos.titulo,
-                datos.autor,
-                datos.materia || null,
-                datos.descripcion || null,
-                id
-            ]
-        );
+      const [resultado] = await pool.query(
+    `UPDATE libros
+     SET Clasificacion = ?,
+         Titulo = ?,
+         Autores = ?,
+         Materias = ?,
+         Descripcion = ?,
+         ImagenPortada = ?
+     WHERE ID = ?`,
+    [
+        datos.serie,
+        datos.titulo,
+        datos.autor,
+        datos.materia || null,
+        datos.descripcion || null,
+        datos.imagenPortada || null,
+        id
+    ]
+);
 
         if (resultado.affectedRows === 0) {
             const [existe] = await pool.query(
@@ -596,9 +607,9 @@ app.get("/api/solicitudes", requiereAdmin, async (req, res) => {
         });
     }
 });
-// ====================================
+
 // ACTUALIZAR ESTADO DE SOLICITUD
-// ====================================
+
 
 app.put("/api/solicitudes/:id/estado", verificarOrigen, requiereAdmin, async (req, res) => {
     try {
@@ -642,9 +653,9 @@ app.put("/api/solicitudes/:id/estado", verificarOrigen, requiereAdmin, async (re
         });
     }
 });
-// ====================================
+
 // ELIMINAR SOLICITUDES DESPUÉS DE 7 DÍAS
-// ====================================
+
 
 async function eliminarSolicitudesAntiguas() {
     try {
@@ -674,9 +685,8 @@ eliminarSolicitudesAntiguas();
 
 // Revisar automáticamente cada hora
 setInterval(eliminarSolicitudesAntiguas, 60 * 60 * 1000);
-// ====================================
+
 // LIBROS MÁS BUSCADOS
-// ====================================
 
 app.get("/api/libros-mas-buscados", async (req, res) => {
     try {
@@ -703,9 +713,9 @@ app.get("/api/libros-mas-buscados", async (req, res) => {
         });
     }
 });
-// ====================================
+
 // ESTADÍSTICAS DE LIBROS
-// ====================================
+
 app.get("/api/estadisticas-libros", requiereAdmin, async (req, res) => {
     try {
         const [resultados] = await pool.query(`
@@ -751,9 +761,9 @@ app.get("/api/estadisticas-libros", requiereAdmin, async (req, res) => {
     }
 });
 
-// ====================================
+
 // ELIMINAR LIBRO
-// ====================================
+
 app.delete("/api/libros/:id", requiereAdmin, async (req, res) => {
     const id = Number(req.params.id);
 

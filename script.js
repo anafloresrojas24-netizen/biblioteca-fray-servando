@@ -1,9 +1,9 @@
 
 "use strict";
 
-// ==========================================
+
 // CONFIGURACIÓN
-// ==========================================
+
 const USUARIO_ADMIN = "admin";
 const CONTRASENA_ADMIN = "1234";
 const NUMERO_DISPONIBILIDAD = "81 2020 9237";
@@ -20,9 +20,8 @@ const sinResultados = document.getElementById("sin-resultados");
 
 let libros = [];
 
-// ==========================================
 // FUNCIONES AUXILIARES
-// ==========================================
+
 function escaparHTML(texto) {
     const div = document.createElement("div");
     div.textContent = String(texto ?? "");
@@ -52,9 +51,9 @@ function detectarTema(idLibro) {
 function obtenerTema(libro) {
     return libro.clasificacion || "";
 }
-// ==========================================
+
+
 // OBTENER IMAGEN SEGÚN LA CLASIFICACIÓN
-// ==========================================
 function obtenerImagenCategoria(idLibro) {
     const id = Number(idLibro);
     let imagen = "";
@@ -94,9 +93,9 @@ function obtenerImagenCategoria(idLibro) {
         : "https://placehold.co/300x420?text=Libro";
 }
 
-// ==========================================
+
 // CARGAR LIBROS DESDE MYSQL
-// ==========================================
+
 async function cargarLibrosDesdeBD() {
     try {
         const respuesta = await fetch("/api/libros");
@@ -147,7 +146,13 @@ return {
   clasificacion: detectarTema(registro.ID),
 
     // Por ahora, portada provisional
- imagen: registro.Materias && String(registro.Materias).trim() !== ""
+// URL de portada guardada en MySQL
+imagenPortada: String(
+    registro.ImagenPortada ?? ""
+).trim(),
+
+// Imagen de categoría que se usa como alternativa
+imagen: registro.Materias && String(registro.Materias).trim() !== ""
     ? obtenerImagenCategoria(registro.ID)
     : "imagenes de biblioteca/sin categoria.jpeg",
 
@@ -170,9 +175,9 @@ return {
     }
 }
 
-// ==========================================
+
 // MOSTRAR CATÁLOGO
-// ==========================================
+
 function mostrarLibros(lista = libros) {
     catalogo.innerHTML = "";
 
@@ -193,7 +198,7 @@ function mostrarLibros(lista = libros) {
 
         article.innerHTML = `
             <img
-                src="${escaparHTML(libro.imagen)}"
+                src="${escaparHTML(libro.imagenPortada || libro.ImagenPortada || libro.imagen || '')}"
                 alt="${escaparHTML(libro.titulo)}">
 
             <div class="datos-libro">
@@ -244,9 +249,9 @@ function mostrarLibros(lista = libros) {
         catalogo.appendChild(article);
     });
 }
-// ==========================================
+
 // FILTROS Y BUSCADOR
-// ==========================================
+
 function filtrarTema(tema) {
     document.getElementById("buscador").value = "";
 
@@ -293,9 +298,8 @@ function buscarLibro() {
     mostrarLibros(resultados);
 }
 
-// ==========================================
 // DETALLES DEL LIBRO
-// ==========================================
+
 
 function abrirLibro(indice) {
     const libro = libros[indice];
@@ -351,7 +355,9 @@ function abrirLibro(indice) {
 
     const imagen = document.getElementById("imagen-modal");
 
-    imagen.src = libro.imagen;
+    imagen.src =
+    libro.imagenPortada || libro.ImagenPortada || libro.imagen || "";
+
     imagen.alt = libro.titulo;
 
     imagen.onerror = () => {
@@ -366,9 +372,9 @@ function cerrarLibro() {
     ventanaLibro.style.display = "none";
 }
 
-// ==========================================
+
 // INICIO Y CIERRE DE SESIÓN
-// ==========================================
+
 async function abrirLogin() {
     try {
         const respuesta = await fetch("/api/sesion");
@@ -437,9 +443,8 @@ async function iniciarSesion(event) {
 }
 
 
-// ==========================================
+
 // ADMINISTRACIÓN
-// ==========================================
 function abrirAdmin() {
     ventanaAdmin.style.display = "flex";
 
@@ -522,7 +527,7 @@ function mostrarListaAdmin(lista) {
 
         elemento.innerHTML = `
             <img
-                src="${escaparHTML(libro.imagen)}"
+                src="${escaparHTML(libro.imagenPortada || libro.ImagenPortada || libro.imagen || '')}"
                 alt="${escaparHTML(libro.titulo)}">
 
             <div class="datos-admin">
@@ -570,10 +575,10 @@ function mostrarListaAdmin(lista) {
     });
 }
 
-// ==========================================
+
 // GUARDAR CAMBIOS ADMINISTRATIVOS LOCALES
-// ==========================================
-// Estas operaciones aún no modifican MySQL.
+
+
 function guardarEnLocalStorage() {
     localStorage.setItem(
         "catalogoFrayServando",
@@ -588,6 +593,7 @@ async function guardarLibro() {
     const materia = document.getElementById("admin-materia").value.trim();
     const serie = document.getElementById("admin-serie").value.trim();
     const descripcion = document.getElementById("admin-descripcion").value.trim();
+    const imagenPortada = document.getElementById("admin-imagen").value.trim();
     const indice = document.getElementById("indice-libro").value;
 
     if (!titulo || !autor || !serie) {
@@ -604,12 +610,13 @@ async function guardarLibro() {
     }
 
     const datosLibro = {
-        titulo,
-        autor,
-        materia,
-        serie,
-        descripcion
-    };
+    titulo,
+    autor,
+    materia,
+    serie,
+    descripcion,
+    imagenPortada
+};
 
     try {
         const url = editando
@@ -658,7 +665,8 @@ function editarLibro(indice) {
     document.getElementById("admin-autor").value = libro.autor;
     document.getElementById("admin-materia").value = libro.materia;
     document.getElementById("admin-serie").value = libro.serie;
-    document.getElementById("admin-imagen").value = libro.imagen;
+   document.getElementById("admin-imagen").value =
+    libro.imagenPortada ?? libro.ImagenPortada ?? libro.imagen ?? "";
     document.getElementById("admin-descripcion").value = libro.descripcion;
 
     document.getElementById("titulo-formulario").textContent =
@@ -736,9 +744,8 @@ function cancelarEdicion() {
     }
 }
 
- // ==========================================
+
  // SOLICITUDES DE LIBROS
- // ==========================================
 
 function abrirSolicitudes() {
     document.getElementById("formulario-solicitud").reset();
@@ -883,9 +890,9 @@ document.getElementById("formulario-solicitud").addEventListener("submit", async
 
 
 });
-// ====================================
+
 // CONFIRMAR O RECHAZAR SOLICITUDES
-// ====================================
+
 
 async function actualizarEstadoSolicitud(id, estado) {
 
@@ -925,9 +932,9 @@ async function actualizarEstadoSolicitud(id, estado) {
 }
 
 
-// ==========================================
+
 // CERRAR VENTANAS
-// ==========================================
+
 window.addEventListener("click", event => {
     if (event.target === ventanaLibro) {
         cerrarLibro();
@@ -949,14 +956,14 @@ document.addEventListener("keydown", event => {
     }
 });
 
-// ==========================================
+
 // INICIAR CATÁLOGO
-// ==========================================
+
 cargarLibrosDesdeBD();
 
-// ====================================
+
 // MOSTRAR LIBROS MÁS BUSCADOS
-// ====================================
+
 
 async function mostrarMasBuscados() {
     try {
@@ -986,9 +993,9 @@ async function mostrarMasBuscados() {
     }
 }
 
-// ====================================
+
 // MOSTRAR ESTADÍSTICAS DE LIBROS
-// ====================================
+
 
 let graficaBarras = null;
 let graficaCircular = null;
@@ -1019,9 +1026,8 @@ async function mostrarEstadisticas() {
         const titulos = datos.libros.map(libro => libro.Titulo);
         const cantidades = datos.libros.map(libro => libro.cantidad);
 
-        // ====================================
         // GRÁFICA DE BARRAS
-        // ====================================
+
 
         const contextoBarras = document
             .getElementById("grafica-barras")
@@ -1054,10 +1060,8 @@ async function mostrarEstadisticas() {
             }
         });
 
-        // ====================================
         // GRÁFICA CIRCULAR
-        // ====================================
-
+ 
         const contextoCircular = document
             .getElementById("grafica-circular")
             .getContext("2d");
@@ -1079,9 +1083,9 @@ async function mostrarEstadisticas() {
                 responsive: true
             }
         });
-                // ====================================
+  
         // GRÁFICA DE MATERIAS
-        // ====================================
+       
 
         const nombresMaterias = datos.materias.map(
             materia => materia.Materias || "Sin materia"
@@ -1131,10 +1135,6 @@ function cerrarEstadisticas() {
     document.getElementById("seccion-estadisticas").style.display = "none";
 }
 
-
-// =====================================
-// FUNCIONES DEL ENCABEZADO PARA CELULAR
-// =====================================
 
 // Abrir y cerrar el buscador
 function alternarBuscadorMovil() {
