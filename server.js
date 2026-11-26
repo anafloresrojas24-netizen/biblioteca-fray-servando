@@ -12,6 +12,7 @@ const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.set("trust proxy", 1);
 
 // CONEXIÓN CON MYSQL
 const pool = mysql.createPool({
@@ -83,9 +84,8 @@ function verificarOrigen(req, res, next) {
     }
 }
 
-// ====================================
+
 // AUTENTICACIÓN DE ADMINISTRADORES
-// ====================================
 
 const administradores = [
     {

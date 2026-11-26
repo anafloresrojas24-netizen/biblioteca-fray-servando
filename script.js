@@ -20,6 +20,7 @@ const sinResultados = document.getElementById("sin-resultados");
 
 let libros = [];
 
+
 // FUNCIONES AUXILIARES
 
 function escaparHTML(texto) {
@@ -1003,17 +1004,23 @@ let graficaMaterias = null;
 
 async function mostrarEstadisticas() {
     try {
-        const respuesta = await fetch("/api/estadisticas-libros");
+        const respuesta = await fetch("/api/estadisticas-libros", {
+            method: "GET",
+            credentials: "include"
+        });
+
         const datos = await respuesta.json();
 
         if (!respuesta.ok) {
             throw new Error(datos.error || "Error al cargar estadísticas");
         }
 
-        if (datos.libros.length === 0) {
+        if (!datos.libros || datos.libros.length === 0) {
             alert("Todavía no hay estadísticas de libros.");
             return;
         }
+
+        // Continúa aquí el resto de tu código de gráficas
 
         // Mostrar la sección de estadísticas
         document.getElementById("seccion-estadisticas").style.display = "block";
