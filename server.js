@@ -6,19 +6,30 @@ const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const MySQLStore = require("express-mysql-session")(session);
 const { rateLimit } = require("express-rate-limit");
+const fs = require("fs");
+const path = require("path");
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 // CONEXIÓN CON MYSQL
 const pool = mysql.createPool({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    database: process.env.DB_NAME || "biblioteca",
-    port: Number(process.env.DB_PORT || 3306),
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: Number(process.env.DB_PORT || 4000),
+
     waitForConnections: true,
-    connectionLimit: 10
+    connectionLimit: 10,
+
+    ssl: {
+        ca: fs.readFileSync(
+            path.join(__dirname, "tidb-ca.pem")
+        ),
+        minVersion: "TLSv1.2"
+    }
 });
 
 // ALMACENAMIENTO DE SESIONES
